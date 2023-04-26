@@ -7,6 +7,8 @@ avg50 = []
 sum = 0
 dates = []
 closePrice = []
+avg20Greater = False
+dateCrosses = []
 
 with open('GME_StockData36Months.csv', 'r') as file:
     csv_reader = csv.reader(file)
@@ -44,3 +46,20 @@ fig.update_layout(title='Moving Averages')
 
 # display the plot
 fig.show()
+
+if avg20[0] > avg50[0]:
+    avg20Greater = True
+else:
+    avg20Greater = False
+
+for i in range(1, len(avg20)):
+    if avg20Greater:
+        if avg20[i] < avg50[i]:
+            avg20Greater = False
+            dateCrosses.append([dates[i], avg20Greater, closePrice[i]])
+
+    elif avg20[i] > avg50[i]:
+        avg20Greater = True
+        dateCrosses.append([dates[i], avg20Greater, closePrice[i]])   
+
+print(dateCrosses)
