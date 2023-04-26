@@ -6,6 +6,7 @@ avg20 = []
 avg50 = []
 sum = 0
 dates = []
+closePrice = []
 
 with open('GME_StockData36Months.csv', 'r') as file:
     csv_reader = csv.reader(file)
@@ -28,13 +29,15 @@ for i in range(49, len(data)):
 
 for i in range(49, len(data)):
     dates.append(data[i][0])
+    closePrice.append(data[i][4])
 
 # create two traces
 trace1 = go.Scatter(x=dates, y=avg20, mode='lines', name='20 Day Moving Average')
 trace2 = go.Scatter(x=dates, y=avg50, mode='lines', name='50 Day Moving Average')
+trace3 = go.Scatter(x=dates, y=closePrice, mode='lines', name='Closing Price')
 
 # create a figure with both traces
-fig = go.Figure(data=[trace1, trace2])
+fig = go.Figure(data=[trace1, trace2, trace3])
 
 # set the title of the plot
 fig.update_layout(title='Moving Averages')
