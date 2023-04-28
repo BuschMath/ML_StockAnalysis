@@ -10,7 +10,7 @@ closePrice = []
 avg20Greater = False
 dateCrosses = []
 
-with open('GME_StockData36Months.csv', 'r') as file:
+with open('AAPL_StockData36Months.csv', 'r') as file:
     csv_reader = csv.reader(file)
     for row in csv_reader:
         data.append(row)
@@ -62,4 +62,6 @@ for i in range(1, len(avg20)):
         avg20Greater = True
         dateCrosses.append([dates[i], avg20Greater, closePrice[i]])   
 
-print(dateCrosses)
+with open('dateCrosses.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(dateCrosses)
