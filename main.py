@@ -1,5 +1,6 @@
 import csv
 import plotly.graph_objs as go
+import yfinance as yf
 
 data = []
 avg20 = []
@@ -10,6 +11,9 @@ closePrice = []
 avg20Greater = False
 dateCrosses = []
 
+ydata = yf.download("AAPL", start="2000-01-01", end="2023-05-05")
+print(ydata)
+'''
 with open('AAPL_StockData36Months.csv', 'r') as file:
     csv_reader = csv.reader(file)
     for row in csv_reader:
@@ -65,3 +69,4 @@ for i in range(1, len(avg20)):
 with open('dateCrosses.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(dateCrosses)
+'''
